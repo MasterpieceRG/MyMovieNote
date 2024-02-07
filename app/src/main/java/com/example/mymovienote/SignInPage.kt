@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SignInPage : AppCompatActivity() {
     private lateinit var binding: ActivitySignInPageBinding
-    private lateinit var sp:SharedPreferences
     private lateinit var epAuth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySignInPageBinding.inflate(layoutInflater)
@@ -18,7 +17,6 @@ class SignInPage : AppCompatActivity() {
         setContentView(binding.root)
 
         epAuth = FirebaseAuth.getInstance()
-        val name = intent.getStringExtra("name")
 
         binding.signinBtn.setOnClickListener {
             val intent = Intent(this@SignInPage, HomePage::class.java)
@@ -31,9 +29,8 @@ class SignInPage : AppCompatActivity() {
                 epAuth.signInWithEmailAndPassword(email, pass)
                     .addOnCompleteListener(this) {
                         if(it.isSuccessful) {
-                            intent.putExtra("name", name)
                             startActivity(intent)
-                            finish()
+                            finishAffinity()
                         }else{
                             Toast.makeText(this, "Account Not Found", Toast.LENGTH_SHORT).show()
                         }

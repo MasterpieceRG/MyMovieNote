@@ -31,9 +31,8 @@ class SignUpPage : AppCompatActivity() {
                 Firebase.auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener {
                     if (it.isSuccessful) {
                         val intent = Intent(this@SignUpPage, SignInPage::class.java)
-                        intent.putExtra("name", name)
                         startActivity(intent)
-                        finish()
+                        finishAffinity()
                     }else {
                         Toast.makeText(this, it.exception?.localizedMessage, Toast.LENGTH_SHORT).show()
                     }

@@ -11,7 +11,6 @@ class HomePage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.nameTv.setText(intent.getStringExtra("name"))
 
 
     }
